@@ -36,14 +36,16 @@
 > -- the algorithm (limit) (if implemented like this one). The book by Tucker then proves that the real solution actually finds the correct zero, if there is one.
 > newton :: Interval -> (Interval -> Interval) -> (Interval -> Interval) -> Maybe Interval
 > newton x f f' = newtonIterate (newtonStep x f f') f f' (len x)
->                    where newtonIterate Nothing f f' _               = Nothing
+>                    where newtonIterate Nothing  f f' _              = Nothing
 >                          newtonIterate (Just x) f f' l | len x == l = Just x
 >                                                        | otherwise  = newtonIterate (newtonStep x f f') f f' (len x)
+> -- note, that the derivative function may not have a zero in the given starting inerval, otherwise the function will 
+> -- most likeley produce nonsense
 >
 >
 > -- here the special case for polynomials (see respective module)
 > -- with this i can assure that the second input function actually is the derivative of the first
-> -- (up to rounding errors of the coefficients. If they are simple these will not occur,tough)
+> -- (up to rounding errors of the coefficients. If they are simple these will not occur, though)
 > polyNewton :: Interval -> Polynomial -> Maybe Interval
 > polyNewton x p = newton x (toFunc p) (toFunc (derivativeP p))
 >
