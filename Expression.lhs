@@ -50,7 +50,8 @@
 > -- a function to convert the abstract expression into an Interval version using
 > -- implementations from Intervals.IntervalArithmetic
 > -- warning : these implementations generally do not account for rounding errors,
-> -- that is only the case for addition, ngation, multiplication and division (that one's kinda weird with 0)
+> -- that is only the case for addition, ngation, multiplication and division 
+> -- (division is a bit weird with 0, though)
 > eval :: Expression -> Interval -> Interval
 > eval (Const c)    _ = double2Interval c
 > eval Id           z = z
@@ -67,5 +68,6 @@
 >
 >
 >
-> -- for exampleone might write down the bell curve as an expression:
-> example1 = Mul (pow (2*pi) (-1/2)) Comp Exp (Mul (Const -1/2) (Pow (-2)))
+> -- for example one might write down the gaussian bell curve as an expression:
+> example1 = Mul (Const ((2*pi) ** (- 1/2))) $ Comp Exp (Mul (Const (- 1/2)) (Pow 2))
+>

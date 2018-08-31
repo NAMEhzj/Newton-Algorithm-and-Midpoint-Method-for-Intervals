@@ -44,21 +44,27 @@
 > mul :: Interval -> Interval -> Interval
 > mul x y = num2Interval (foldr (minIEEE) (infinity) (leftIntList x y))
 >                      (foldr (maxIEEE)(-infinity) (rightIntList x y))
->
+> 
 >
 > pow :: Interval -> Int -> Interval
 > pow z n | n > 1  = mul z (pow z (n-1))
 >         | n == 1 = z
 >         | n == 0 = double2Interval 1
 >
+> -- the following functions are NOT interval extensions of their real counterparts,
+> -- i.e. they do not account for all rounding errors. 
+>
+>
 >
 > powI :: Interval -> Double -> Interval
-> powI z p | p > 1  = mul z (powI z (p -1))
+> powI z p | p > 1  = mul z (powI z (p - 1))
 >          | p == 1 = z
->          | p == 0 = double2Interval 1 
->          | p > 0  = num2Interval lbn rbn
->                    where lbn = min ((lb z) ** p) ((rb z) ** p)
->                          rbn = max ((lb z) ** p) ((rb z) ** p)
+>          | p == 0 = double2Interval 1
+>          | p > 0  = let lbn = min ((lb z) ** p) ((rb z) ** p)
+>                         rbn = max ((lb z) ** p) ((rb z) ** p) 
+>                      in num2Interval lbn rbn
+>          | otherwise = simpleDiv (powI z (p + 1)) z
+>
 >
 >
 > expI :: Interval -> Interval
@@ -88,7 +94,7 @@
 >
 >
 >
->
+> -- from here on its all clean again:
 >
 > -- division where divisor does not contain zeros, result is always a single interval,
 > -- the exception of dividing by zero is handled by the control.exception module,

@@ -39,8 +39,8 @@
 >                    where newtonIterate Nothing  f f' _              = Nothing
 >                          newtonIterate (Just x) f f' l | len x == l = Just x
 >                                                        | otherwise  = newtonIterate (newtonStep x f f') f f' (len x)
-> -- note that the derivative function may not have a zero in the given starting inerval, otherwise the 
-> -- newton-function will most likeley produce nonsense (or fail with an exception)
+> -- note, that the derivative function cannot have a zero in the given starting inerval, otherwise the function will 
+> -- most likeley produce nonsense!
 >
 >
 > -- here the special case for polynomials (see respective module)
