@@ -20,7 +20,7 @@
 > -- the algorithm always carries the output set as a list of intervals which are 
 > -- iteratively created by bisecting over and over, so they will always be ordered 
 > -- in the list. That makes it easy to just fuse touching intervals together for simplicity.
-> -- clean does exactly that (empty and single list stay the same, if two elements are there andtouch, they get fused)
+> -- clean does exactly that (empty and single lists stay the same, if two elements are there and touch, they get fused)
 > clean :: [Interval] -> [Interval]
 > clean [] = []
 > clean (x : []) = [x]
