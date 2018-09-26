@@ -1,5 +1,7 @@
 > -- this module implements the newton method for finding zeros of a differentiable function using intervals 
-> -- (both, actual "big" intervals for the algorithm and "small" intervalls to estimate the error)
+> -- (both, actual "big" intervals for the algorithm, see Validated Numerics by Warwick Tucker, 
+> -- and "small" intervalls to estimate the error)
+
 > module Newton where
 >
 > import Intervals.IntervalType
