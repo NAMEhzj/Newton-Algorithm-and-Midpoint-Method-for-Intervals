@@ -1,5 +1,5 @@
 > -- this module implements the newton method for finding zeros of a differentiable function using intervals 
-> -- (both, actual "big" intervals for the algorithm, see Validated Numerics by Warwick Tucker, 
+> -- (both, actual "big" intervals for the algorithm, see Validated Numerics by Warwick Tucker 2011, 
 > -- and "small" intervalls to estimate the error)
 
 > module Newton where
@@ -25,7 +25,7 @@
 > -- important: For the following functions the second function input is supposed to be the derivative of the first.
 > -- If that is not the case, the algorithm will most likeley produce nonsense or nothing at all
 >
-> -- one step of the newton algorithm (see Warwick Tucker: Validated Numerics, 2011)
+> -- one step of the newton algorithm
 > newtonStep :: Interval -> (Interval -> Interval) -> (Interval -> Interval) -> Maybe Interval
 > newtonStep x f f' = meet x $ sub m (simpleDiv (f m) (f' x))
 >                       where m = double2Interval(cen x)
@@ -42,7 +42,7 @@
 >                          newtonIterate (Just x) f f' l | len x == l = Just x
 >                                                        | otherwise  = newtonIterate (newtonStep x f f') f f' (len x)
 > -- note, that the derivative function cannot have a zero in the given starting inerval, otherwise the function will 
-> -- most likeley produce nonsense!
+> -- generally not return the desired result!
 >
 >
 > -- here the special case for polynomials (see respective module)
