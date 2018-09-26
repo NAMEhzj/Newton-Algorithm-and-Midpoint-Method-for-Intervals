@@ -44,7 +44,7 @@
 > 
 >
 > -- the main function: executes the first iteration of the algorithm and then calls the recursive version.
-> -- (you could also just start with a one-element list and infinity as upper bound, but i don't like infinity as a Double)
+> -- (you could also just start with a one-element list and infinity as upper bound)
 > midpointMethod :: (Interval -> Interval) -> Interval -> (Double, [Interval])
 > midpointMethod f z = midPtRec f (rb (f (double2Interval (cen z))) , bisect z) 
 >                                            
