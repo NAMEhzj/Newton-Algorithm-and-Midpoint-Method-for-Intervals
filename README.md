@@ -1,5 +1,7 @@
 # Newton-Algorithm and Midpoint Method for Intervals
 
+created by Eva Richter, Matti Richter July 2018
+
  This repository features two classic algorithms on real functions modeled as haskell functions on Intervals with floating point numbers as bounds. The algorithms were taken from the book "Validated Numerics" by WarwickTucker 2011.
  
  In the folder Intervals, a type "Interval" and corresponding arithmetic functions are defined in such a way, that all possible rounding errors that could occur are accounted for, i.e. the output interval is guaranteed to contain the correct solution, if all input conditions are met. 
